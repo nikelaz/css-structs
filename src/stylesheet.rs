@@ -47,8 +47,8 @@ mod tests {
     let rule = &result.rules[0];
     assert_eq!(rule.selector, "body");
     assert_eq!(rule.declarations.declarations.len(), 2);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("margin", "0"));
-    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "0"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("margin", "0", false));
+    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "0", false));
   }
 
   #[test]
@@ -64,17 +64,17 @@ mod tests {
 
     let rule1 = &result.rules[0];
     assert_eq!(rule1.selector, "h1");
-    assert_eq!(rule1.declarations.declarations[0], CSSDeclaration::new("color", "red"));
+    assert_eq!(rule1.declarations.declarations[0], CSSDeclaration::new("color", "red", false));
 
     let rule2 = &result.rules[1];
     assert_eq!(rule2.selector, "p");
-    assert_eq!(rule2.declarations.declarations[0], CSSDeclaration::new("font-size", "16px"));
+    assert_eq!(rule2.declarations.declarations[0], CSSDeclaration::new("font-size", "16px", false));
 
     let rule3 = &result.rules[2];
     assert_eq!(rule3.selector, ".box");
     assert_eq!(rule3.declarations.declarations.len(), 2);
-    assert_eq!(rule3.declarations.declarations[0], CSSDeclaration::new("border", "1px solid black"));
-    assert_eq!(rule3.declarations.declarations[1], CSSDeclaration::new("background", "white"));
+    assert_eq!(rule3.declarations.declarations[0], CSSDeclaration::new("border", "1px solid black", false));
+    assert_eq!(rule3.declarations.declarations[1], CSSDeclaration::new("background", "white", false));
   }
 
   #[test]
@@ -96,13 +96,13 @@ mod tests {
 
     let title_rule = &result.rules[0];
     assert_eq!(title_rule.selector, ".title");
-    assert_eq!(title_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "bold"));
-    assert_eq!(title_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "24px"));
+    assert_eq!(title_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "bold", false));
+    assert_eq!(title_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "24px", false));
 
     let subtitle_rule = &result.rules[1];
     assert_eq!(subtitle_rule.selector, ".subtitle");
-    assert_eq!(subtitle_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "normal"));
-    assert_eq!(subtitle_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "18px"));
+    assert_eq!(subtitle_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "normal", false));
+    assert_eq!(subtitle_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "18px", false));
   }
 
   #[test]

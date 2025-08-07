@@ -55,8 +55,8 @@ mod tests {
     let (_, rule) = CSSRule::from_string(input).unwrap();
     assert_eq!(rule.selector, "h1");
     assert_eq!(rule.declarations.declarations.len(), 2);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("color", "red"));
-    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "10px"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("color", "red", false));
+    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "10px", false));
   }
 
   #[test]
@@ -65,8 +65,8 @@ mod tests {
     let (_, rule) = CSSRule::from_string(input).unwrap();
     assert_eq!(rule.selector, "div.my-class");
     assert_eq!(rule.declarations.declarations.len(), 2);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("margin", "0 auto"));
-    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "1em"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("margin", "0 auto", false));
+    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "1em", false));
   }
 
   #[test]
@@ -75,8 +75,8 @@ mod tests {
     let (_, rule) = CSSRule::from_string(input).unwrap();
     assert_eq!(rule.selector, "p");
     assert_eq!(rule.declarations.declarations.len(), 2);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("font-size", "16px"));
-    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("line-height", "1.5"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("font-size", "16px", false));
+    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("line-height", "1.5", false));
   }
 
   #[test]
@@ -98,8 +98,8 @@ mod tests {
     let (_, rule) = CSSRule::from_string(input).unwrap();
     assert_eq!(rule.selector.trim(), ".box");
     assert_eq!(rule.declarations.declarations.len(), 2);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("border", "1px solid black"));
-    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("background", "white"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("border", "1px solid black", false));
+    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("background", "white", false));
   }
 
   #[test]
@@ -108,6 +108,6 @@ mod tests {
     let (_, rule) = CSSRule::from_string(input).unwrap();
     assert_eq!(rule.selector, "h1, h2, h3");
     assert_eq!(rule.declarations.declarations.len(), 1);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "bold"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "bold", false));
   }
 }
