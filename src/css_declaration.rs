@@ -90,6 +90,13 @@ impl CSSDeclaration {
     Ok((input, CSSDeclaration { name, value, important }))
   }
 
+  pub fn from_string(input: &str) -> Result<CSSDeclaration, String> {
+    let (_, decl) = Self::parse(input)
+      .map_err(|_| "Failed to parse CSS declaration".to_string())?; 
+
+    Ok(decl)
+  }
+
   pub fn new(name: &str, value: &str, important: Option<bool>) -> Self {
     CSSDeclaration {
       name: name.to_string(),
@@ -98,12 +105,6 @@ impl CSSDeclaration {
     }
   }
 
-  pub fn from_string(input: &str) -> Result<CSSDeclaration, String> {
-    let (_, decl) = Self::parse(input)
-      .map_err(|_| "Failed to parse CSS declaration".to_string())?; 
-
-    Ok(decl)
-  }
 }
 
 impl fmt::Display for CSSDeclaration {

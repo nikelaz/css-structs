@@ -1,8 +1,8 @@
-mod css_declaration;
-mod css_declaration_list;
-mod css_rule;
-mod stylesheet;
 mod helpers;
+pub mod css_declaration;
+pub mod css_declaration_list;
+pub mod css_rule;
+pub mod stylesheet;
 
 use crate::stylesheet::Stylesheet;
 

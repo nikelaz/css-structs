@@ -11,7 +11,7 @@ pub struct Stylesheet {
 }
 
 fn rules_parser(input: &str) -> IResult<&str, Vec<CSSRule>> {
-  many0(CSSRule::from_string).parse(input)
+  many0(CSSRule::parse).parse(input)
 }
 
 impl Stylesheet {
