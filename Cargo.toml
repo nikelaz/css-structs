@@ -3,5 +3,9 @@ name = "css-structs"
 version = "0.1.0"
 edition = "2024"
 
+[lints.rust]
+# This is a library and unused methods are expected
+dead_code = "allow"
+
 [dependencies]
 nom = "8.0.0"

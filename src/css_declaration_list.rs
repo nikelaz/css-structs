@@ -19,7 +19,7 @@ impl CSSDeclarationList {
     many0(
       delimited(
         multispace0,
-        CSSDeclaration::from_string, // Assuming from_string parses a single declaration
+        CSSDeclaration::parse,
         opt(char(';')),
       )
     )
@@ -62,7 +62,7 @@ mod tests {
     let input = "color: red;";
     let list = CSSDeclarationList::from_string(input).unwrap();
     assert_eq!(list.declarations.len(), 1);
-    assert_eq!(list.declarations[0], CSSDeclaration::new("color", "red"));
+    assert_eq!(list.declarations[0], CSSDeclaration::new("color", "red", None));
   }
 
   #[test]
@@ -70,9 +70,9 @@ mod tests {
     let input = "color: red; background-color: blue; padding: 10px;";
     let list = CSSDeclarationList::from_string(input).unwrap();
     assert_eq!(list.declarations.len(), 3);
-    assert_eq!(list.declarations[0], CSSDeclaration::new("color", "red"));
-    assert_eq!(list.declarations[1], CSSDeclaration::new("background-color", "blue"));
-    assert_eq!(list.declarations[2], CSSDeclaration::new("padding", "10px"));
+    assert_eq!(list.declarations[0], CSSDeclaration::new("color", "red", None));
+    assert_eq!(list.declarations[1], CSSDeclaration::new("background-color", "blue", None));
+    assert_eq!(list.declarations[2], CSSDeclaration::new("padding", "10px", None));
   }
 
   #[test]
@@ -80,8 +80,8 @@ mod tests {
     let input = "  margin :  0 auto  ;  padding :  1em ;  ";
     let list = CSSDeclarationList::from_string(input).unwrap();
     assert_eq!(list.declarations.len(), 2);
-    assert_eq!(list.declarations[0], CSSDeclaration::new("margin", "0 auto"));
-    assert_eq!(list.declarations[1], CSSDeclaration::new("padding", "1em"));
+    assert_eq!(list.declarations[0], CSSDeclaration::new("margin", "0 auto", None));
+    assert_eq!(list.declarations[1], CSSDeclaration::new("padding", "1em", None));
   }
 
   #[test]
@@ -89,8 +89,8 @@ mod tests {
     let input = "font-size: 16px; line-height: 1.5";
     let list = CSSDeclarationList::from_string(input).unwrap();
     assert_eq!(list.declarations.len(), 2);
-    assert_eq!(list.declarations[0], CSSDeclaration::new("font-size", "16px"));
-    assert_eq!(list.declarations[1], CSSDeclaration::new("line-height", "1.5"));
+    assert_eq!(list.declarations[0], CSSDeclaration::new("font-size", "16px", None));
+    assert_eq!(list.declarations[1], CSSDeclaration::new("line-height", "1.5", None));
   }
 
   #[test]
@@ -114,6 +114,6 @@ mod tests {
     let mut list = CSSDeclarationList::from_string(input).unwrap();
     list.remove_declaration("color");
     assert_eq!(list.declarations.len(), 1);
-    assert_eq!(list.declarations[0], CSSDeclaration::new("padding", "10px"));
+    assert_eq!(list.declarations[0], CSSDeclaration::new("padding", "10px", None));
   }
 }

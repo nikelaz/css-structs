@@ -1,12 +1,7 @@
 use crate::css_rule::CSSRule;
-use crate::css_declaration_list::CSSDeclarationList;
 use nom::{
   IResult,
-  bytes::complete::{is_not, tag},
-  sequence::{delimited, preceded, terminated},
   multi::many0,
-  combinator::map,
-  character::complete::{char, multispace0},
   Parser,
 };
 
@@ -30,7 +25,6 @@ impl Stylesheet {
 mod tests {
   use super::*;
   use crate::css_declaration::CSSDeclaration;
-  use crate::css_declaration_list::CSSDeclarationList;
 
   #[test]
   fn test_empty_stylesheet() {
@@ -47,8 +41,8 @@ mod tests {
     let rule = &result.rules[0];
     assert_eq!(rule.selector, "body");
     assert_eq!(rule.declarations.declarations.len(), 2);
-    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("margin", "0"));
-    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "0"));
+    assert_eq!(rule.declarations.declarations[0], CSSDeclaration::new("margin", "0", None));
+    assert_eq!(rule.declarations.declarations[1], CSSDeclaration::new("padding", "0", None));
   }
 
   #[test]
@@ -64,17 +58,17 @@ mod tests {
 
     let rule1 = &result.rules[0];
     assert_eq!(rule1.selector, "h1");
-    assert_eq!(rule1.declarations.declarations[0], CSSDeclaration::new("color", "red"));
+    assert_eq!(rule1.declarations.declarations[0], CSSDeclaration::new("color", "red", None));
 
     let rule2 = &result.rules[1];
     assert_eq!(rule2.selector, "p");
-    assert_eq!(rule2.declarations.declarations[0], CSSDeclaration::new("font-size", "16px"));
+    assert_eq!(rule2.declarations.declarations[0], CSSDeclaration::new("font-size", "16px", None));
 
     let rule3 = &result.rules[2];
     assert_eq!(rule3.selector, ".box");
     assert_eq!(rule3.declarations.declarations.len(), 2);
-    assert_eq!(rule3.declarations.declarations[0], CSSDeclaration::new("border", "1px solid black"));
-    assert_eq!(rule3.declarations.declarations[1], CSSDeclaration::new("background", "white"));
+    assert_eq!(rule3.declarations.declarations[0], CSSDeclaration::new("border", "1px solid black", None));
+    assert_eq!(rule3.declarations.declarations[1], CSSDeclaration::new("background", "white", None));
   }
 
   #[test]
@@ -96,13 +90,13 @@ mod tests {
 
     let title_rule = &result.rules[0];
     assert_eq!(title_rule.selector, ".title");
-    assert_eq!(title_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "bold"));
-    assert_eq!(title_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "24px"));
+    assert_eq!(title_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "bold", None));
+    assert_eq!(title_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "24px", None));
 
     let subtitle_rule = &result.rules[1];
     assert_eq!(subtitle_rule.selector, ".subtitle");
-    assert_eq!(subtitle_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "normal"));
-    assert_eq!(subtitle_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "18px"));
+    assert_eq!(subtitle_rule.declarations.declarations[0], CSSDeclaration::new("font-weight", "normal", None));
+    assert_eq!(subtitle_rule.declarations.declarations[1], CSSDeclaration::new("font-size", "18px", None));
   }
 
   #[test]
