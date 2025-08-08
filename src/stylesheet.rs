@@ -1,3 +1,36 @@
+//! CSS Stylesheet Parser
+//!
+//! This module provides parsing and representation for complete CSS stylesheets
+//! containing multiple CSS rules. A stylesheet represents the top-level structure
+//! that holds all CSS rules like `body { margin: 0; } .title { color: red; }`.
+//!
+//! ## Main API
+//! 
+//! - `Stylesheet::from_string()` - Parse a complete stylesheet from a CSS string
+//! - `Stylesheet::new()` - Create a new stylesheet programmatically with optional rules
+//! - `Display` trait implementation for converting back to CSS string format
+//!
+//! ## Examples
+//!
+//! ```rust
+//! use css_parser::Stylesheet;
+//! 
+//! // Parse from string
+//! let css = "body { margin: 0; padding: 0; } h1 { color: red; }";
+//! let stylesheet = Stylesheet::from_string(css).unwrap();
+//! assert_eq!(stylesheet.rules.len(), 2);
+//!
+//! // Create with existing rules
+//! let stylesheet = Stylesheet::new(Some(vec![rule1, rule2]));
+//! println!("{}", stylesheet); // Outputs formatted CSS
+//!
+//! // Create empty stylesheet
+//! let empty = Stylesheet::new(None);
+//! assert!(empty.rules.is_empty());
+//! ```
+
+
+use std::fmt;
 use crate::css_rule::CSSRule;
 use nom::{
   IResult,
@@ -5,21 +38,45 @@ use nom::{
   Parser,
 };
 
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Stylesheet {
   pub rules: Vec<CSSRule>,
 }
 
-fn rules_parser(input: &str) -> IResult<&str, Vec<CSSRule>> {
-  many0(CSSRule::parse).parse(input)
-}
+impl Stylesheet {  
+  fn parse(input: &str) -> IResult<&str, Vec<CSSRule>> {
+    many0(CSSRule::parse).parse(input)
+  }
 
-impl Stylesheet {
-  pub fn from_string(css_block: &str) -> Result<Self, &str> {
-    let (_, rules) = rules_parser.parse(css_block).unwrap();
-    Ok(Stylesheet { rules })
+  pub fn from_string(input: &str) -> Result<Self, String> {
+    let (_, rules) = Self::parse(input)
+      .map_err(|_| "Failed to parse CSS".to_string())?;
+
+    Ok(Self { rules })
+  }
+
+  pub fn new(rules: Option<Vec<CSSRule>>) -> Self {
+    if let Some(rules) = rules {
+      Self { rules }
+    } else {
+      Self { rules: Vec::new() }
+    }
   }
 }
+
+impl fmt::Display for Stylesheet {
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    let stylesheet = self.rules
+      .iter()
+      .map(|decl| decl.to_string())
+      .collect::<Vec<_>>()
+      .join(" ");
+
+    write!(f, "{}", stylesheet)
+  }
+}
+
 
 #[cfg(test)]
 mod tests {
