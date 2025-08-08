@@ -20,9 +20,9 @@
 //! let stylesheet = Stylesheet::from_string(css).unwrap();
 //! assert_eq!(stylesheet.rules.len(), 2);
 //!
-//! // Create with existing rules
-//! let stylesheet = Stylesheet::new(Some(vec![rule1, rule2]));
-//! println!("{}", stylesheet); // Outputs formatted CSS
+//! // Create with existing rules 
+//! let stylesheet = Stylesheet::new(Some(stylesheet.rules.clone()));
+//! println!("{}", stylesheet);
 //!
 //! // Create empty stylesheet
 //! let empty = Stylesheet::new(None);
