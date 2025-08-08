@@ -8,7 +8,7 @@ authors = ["Nikola Lazarov <nikola.n.lazarov@outlook.com>"]
 repository = "https://github.com/nikelaz/css-structs"
 homepage = "https://github.com/nikelaz/css-structs"
 documentation = "https://docs.rs/css-structs"
-keywords = ["css", "parser", "stylesheet", "styles", "web", "css3"]
+keywords = ["css", "parser", "stylesheet", "styles", "css3"]
 categories = ["parser-implementations"]
 readme = "README.md"
 
