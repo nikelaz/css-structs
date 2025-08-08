@@ -12,7 +12,7 @@
 //! ## Quick Start
 //!
 //! ```rust
-//! use css_parser::Stylesheet;
+//! use css_structs::Stylesheet;
 //!
 //! let css = "body { margin: 0; padding: 0; }";
 //! let stylesheet = Stylesheet::from_string(css).unwrap();

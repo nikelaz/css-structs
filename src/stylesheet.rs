@@ -13,7 +13,7 @@
 //! ## Examples
 //!
 //! ```rust
-//! use css_parser::Stylesheet;
+//! use css_structs::Stylesheet;
 //! 
 //! // Parse from string
 //! let css = "body { margin: 0; padding: 0; } h1 { color: red; }";

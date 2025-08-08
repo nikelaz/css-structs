@@ -25,7 +25,7 @@ css-structs = "1.0.0"
 ### Parse a Complete Stylesheet
 
 ```rust
-use css_parser::Stylesheet;
+use css_structs::Stylesheet;
 
 let css = r#"
     body {
@@ -57,7 +57,7 @@ println!("{}", stylesheet);
 ### Parse Individual CSS Rules
 
 ```rust
-use css_parser::CSSRule;
+use css_structs::CSSRule;
 
 let rule_str = ".container { max-width: 1200px; margin: 0 auto; }";
 let rule = CSSRule::from_string(rule_str).unwrap();
@@ -69,7 +69,7 @@ println!("Declarations: {}", rule.declarations.declarations.len());
 ### Parse Declaration Lists
 
 ```rust
-use css_parser::CSSDeclarationList;
+use css_structs::CSSDeclarationList;
 
 let declarations = "color: red; margin: 10px; padding: 5px !important";
 let list = CSSDeclarationList::from_string(declarations).unwrap();
@@ -83,7 +83,7 @@ println!("{}", list); // "margin: 10px; padding: 5px !important;"
 ### Parse Individual Declarations
 
 ```rust
-use css_parser::CSSDeclaration;
+use css_structs::CSSDeclaration;
 
 let decl = CSSDeclaration::from_string("font-size: 16px !important").unwrap();
 println!("Property: {}", decl.property);
@@ -94,7 +94,7 @@ println!("Important: {}", decl.important.is_some());
 ### Working with Parsed Data
 
 ```rust
-use css_parser::{Stylesheet, CSSDeclaration};
+use css_structs::{Stylesheet, CSSDeclaration};
 
 let css = r#"
     .card { 
@@ -160,7 +160,7 @@ new_declarations.declarations.push(
 The parser returns `Result` types for graceful error handling:
 
 ```rust
-use css_parser::Stylesheet;
+use css_structs::Stylesheet;
 
 let invalid_css = "body { color: red; margin: 10px"; // missing closing brace
 match Stylesheet::from_string(invalid_css) {

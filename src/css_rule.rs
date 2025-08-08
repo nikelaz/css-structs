@@ -13,7 +13,7 @@
 //! ## Examples
 //!
 //! ```rust
-//! use css_parser::{CSSRule, CSSDeclarationList, CSSDeclaration};
+//! use css_structs::{CSSRule, CSSDeclarationList, CSSDeclaration};
 //! 
 //! // Parse from string
 //! let rule = CSSRule::from_string("div.container { color: red; margin: 10px }").unwrap();

@@ -12,7 +12,7 @@
 //! ## Examples
 //!
 //! ```rust
-//! use css_parser::CSSDeclaration;
+//! use css_structs::CSSDeclaration;
 //! 
 //! // Parse from string
 //! let decl = CSSDeclaration::from_string("color: red !important").unwrap();

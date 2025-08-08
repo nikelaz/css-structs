@@ -14,7 +14,7 @@
 //! ## Examples
 //!
 //! ```rust
-//! use css_parser::CSSDeclarationList;
+//! use css_structs::CSSDeclarationList;
 //! 
 //! // Parse from string
 //! let list = CSSDeclarationList::from_string("color: red; margin: 10px; padding: 5px").unwrap();
