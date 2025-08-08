@@ -1,7 +1,16 @@
 [package]
 name = "css-structs"
-version = "0.2.0"
+version = "1.0.0"
 edition = "2024"
+license = "MIT"
+description = "A Rust library for parsing and manipulating CSS stylesheets, rules, and declarations"
+authors = ["Nikola Lazarov <nikola.n.lazarov@outlook.com>"]
+repository = "https://github.com/nikelaz/css-structs"
+homepage = "https://github.com/nikelaz/css-structs"
+documentation = "https://docs.rs/css-structs"
+keywords = ["css", "parser", "stylesheet", "styles", "web", "css3"]
+categories = ["parser-implementations"]
+readme = "README.md"
 
 [lints.rust]
 # This is a library and unused methods are expected
