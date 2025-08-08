@@ -1,4 +1,4 @@
-# CSS Parser
+# CSS Structs
 
 [![Crates.io](https://img.shields.io/crates/v/css-parser.svg)](https://crates.io/crates/css-structs)
 [![Documentation](https://docs.rs/css-parser/badge.svg)](https://docs.rs/css-structs)
